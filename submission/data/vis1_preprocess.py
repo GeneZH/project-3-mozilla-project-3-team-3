@@ -5,9 +5,11 @@ with open(filename, encoding="ISO-8859-1") as f:
     data_list = list(reader)
     csvFile = open('vis1.csv', 'w', newline='')
     writer = csv.writer(csvFile)
-    writer.writerow([data_list[0][0], *data_list[0][24:33]])
+    fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy','Reliability', 'User Review', 'Expert Recommendation', 'Friend or Family Recommendation', 'Convenience']
+    writer.writerow([data_list[0][0], *fields])
     for row in data_list[1:]:
-            writer.writerow([row[0], *row[24:33]])
+        if not any(value == '' for value in row[24:34]):
+            writer.writerow([row[0], *row[24:34]])
 
     csvFile.close()
 
