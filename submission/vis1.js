@@ -4,7 +4,7 @@ function vis1() {
     var fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy',
         'Reliability', 'User Review', 'Expert Recommendation', 'Friend or Family Recommendation', 'Convenience'
     ];
-    d3.csv("/data/vis1.csv", function(data) {
+    d3.csv("./data/vis1.csv", function(data) {
         var fieldData = [
             []
         ];
