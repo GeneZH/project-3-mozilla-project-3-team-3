@@ -55,3 +55,19 @@ h2 {
 .arc path {
   stroke: #fff;
 }
+
+.center-txt country {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 16;
+}
+
+.legend {
+  font-size: 12px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  rect {
+    stroke-width: 2;
+  }
+  text {
+    fill: lightcyan;
+  }
+}
