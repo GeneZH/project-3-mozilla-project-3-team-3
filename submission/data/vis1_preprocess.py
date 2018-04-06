@@ -5,7 +5,7 @@ with open(filename, encoding="ISO-8859-1") as f:
     data_list = list(reader)
     csvFile = open('vis1.csv', 'w', newline='')
     writer = csv.writer(csvFile)
-    fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy','Reliability', 'User Review', 'Expert Recommendation', 'Friend or Family Recommendation', 'Convenience']
+    fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy', 'Reliability', 'User Review', 'Expert REC', 'Friend/Family REC', 'Convenience']
     writer.writerow([data_list[0][0], *fields])
     for row in data_list[1:]:
         if not any(value == '' for value in row[24:34]):

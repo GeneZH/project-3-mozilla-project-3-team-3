@@ -2,12 +2,13 @@ vis1();
 
 function vis1() {
     var fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy',
-        'Reliability', 'User Review', 'Expert Recommendation', 'Friend or Family Recommendation', 'Convenience'
+        'Reliability', 'User Review', 'Expert REC', 'Friend/Family REC', 'Convenience'
     ];
     d3.csv("./data/vis1.csv", function(data) {
         var fieldData = [
             []
         ];
+        console.log(data[0]);
         for (i = 0; i < 10; i++)
             fieldData.push([]);
 
@@ -60,25 +61,21 @@ function vis1() {
 
         //svg.append("g").append("rect").attr("width", width).attr("height", height).attr("class", "plot-bg");
 
-        // Add Axis labels
-        svg.append("g")
-            .call(d3.axisBottom(xScale))
-            .attr("transform", "translate(-20," + yScale(0.5) + ")");
 
-        svg.append("g").attr("class", "axis axis--y").call(yAxis);
 
         svg.append("g").selectAll("line")
             .data(showdata).enter()
             .append("line")
             .attr("stroke", "steelblue")
+            .attr("stroke-width", 1.5)
             .attr("x1", function(d) {
-                return xScale(d.key);
+                return xScale(d.key) + 35;
             })
             .attr("y1", function(d) {
                 return yScale(d.mean + d.deviation);
             })
             .attr("x2", function(d) {
-                return xScale(d.key);
+                return xScale(d.key) + 35;
             })
             .attr("y2", function(d) {
                 return yScale(d.mean - d.deviation);
@@ -90,14 +87,15 @@ function vis1() {
             .append("line")
             .attr("class", "error-cap")
             .attr("stroke", "steelblue")
+            .attr("stroke-width", 2)
             .attr("x1", function(d) {
-                return xScale(d.key) - 4;
+                return xScale(d.key) - 4 + 35;
             })
             .attr("y1", function(d) {
                 return yScale(d.mean + d.deviation);
             })
             .attr("x2", function(d) {
-                return xScale(d.key) + 4;
+                return xScale(d.key) + 4 + 35;
             })
             .attr("y2", function(d) {
                 return yScale(d.mean + d.deviation);
@@ -109,14 +107,15 @@ function vis1() {
             .append("line")
             .attr("class", "error-cap")
             .attr("stroke", "steelblue")
+            .attr("stroke-width", 2)
             .attr("x1", function(d) {
-                return xScale(d.key) - 4;
+                return xScale(d.key) - 4 + 35;
             })
             .attr("y1", function(d) {
                 return yScale(d.mean - d.deviation);
             })
             .attr("x2", function(d) {
-                return xScale(d.key) + 4;
+                return xScale(d.key) + 4 + 35;
             })
             .attr("y2", function(d) {
                 return yScale(d.mean - d.deviation);
@@ -127,13 +126,22 @@ function vis1() {
             .selectAll("circle")
             .data(showdata).enter()
             .append("circle")
+            .attr("r", 3.5)
+            .attr("fill", "red")
             .attr("cx", function(d) {
-                return xScale(d.key);
+                return xScale(d.key)  + 35;
             })
             .attr("cy", function(d) {
                 return yScale(d.mean);
             })
             .attr("r", 4);
+
+        // Add Axis labels
+        svg.append("g")
+            .call(d3.axisBottom(xScale))
+            .attr("transform", "translate(0," + yScale(0.5) + ")");
+
+        svg.append("g").attr("class", "axis axis--y").call(yAxis);
 
     });
 }

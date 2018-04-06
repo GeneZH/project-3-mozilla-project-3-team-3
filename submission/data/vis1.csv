@@ -1,4 +1,4 @@
-Response ID,Price,Features,Safety,Security,Privacy,Reliability,User Review,Expert Recommendation,Friend or Family Recommendation,Convenience
+Response ID,Price,Features,Safety,Security,Privacy,Reliability,User Review,Expert REC,Friend/Family REC,Convenience
 1,4,1,8,10,9,6,3,7,2,5
 2,2,3,10,9,8,5,4,7,1,6
 3,2,1,8,9,10,4,5,3,6,7
