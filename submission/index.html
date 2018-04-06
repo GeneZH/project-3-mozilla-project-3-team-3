@@ -16,6 +16,10 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-brand" href="#">Project 3</p>
+                <a class="navbar-brand" href="#" id="mapLink">Country</a>
+                <a class="navbar-brand" href="#" id="vis1Link">Vis1</a>
+                <a class="navbar-brand" href="#" id="vis2Link">Vis2</a>
+                <a class="navbar-brand" href="#" id="vis3Link">Vis3</a>
             </div>
         </div>
     </nav>
@@ -37,6 +41,15 @@
         <div id="vis3_plot"></div>
     </div>
     <script>
+        $('#mapLink').click(function(){ scrollTo("map"); return false; });
+        $('#vis1Link').click(function(){ scrollTo("Vis1"); return false; });
+        $('#vis2Link').click(function(){ scrollTo("Vis2"); return false; });
+        $('#vis3Link').click(function(){ scrollTo("Vis3"); return false; });
+        function scrollTo(id){
+            $('html,body').animate({
+                scrollTop: $("#"+id).offset().top - 80},
+                'slow');
+        }
         //Map
         var margin = { top: 20, right: 20, bottom: 30, left: 40 },
                 width = 1080 - margin.left - margin.right,
