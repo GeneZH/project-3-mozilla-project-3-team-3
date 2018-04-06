@@ -82,6 +82,8 @@
           var countries = topojson.feature(world, world.objects.countries).features;
           countries = countries.filter(function(d) {
             return names.some(function(n) {
+                if(d.id == '410') return d.name = 'south korea';
+                if(d.id == '408') return d.name = 'north korea';
                 if (d.id == n.id) return d.name = n.name.split(',')[0];
               });
           });
