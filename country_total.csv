@@ -1,0 +1,231 @@
+Country,Ultra Nerd,Technically Savvy,Average User,Luddite
+united states,2132,7754,9108,514
+canada,506,1625,2072,123
+zimbabwe,10,34,28,16
+germany,2642,9807,10731,676
+united kingdom,552,1952,2143,137
+france,3419,12932,13971,1556
+finland,45,109,56,6
+malaysia,22,140,117,10
+afghanistan,40,37,33,27
+india,574,2068,1230,156
+hong kong,14,36,14,2
+spain,690,2218,2409,237
+indonesia,106,368,285,54
+mexico,564,2668,3076,263
+brazil,1055,5417,5718,412
+bolivia,25,145,195,30
+ukraine,30,27,19,1
+macau,1,6,2,0
+australia,276,914,1223,85
+pakistan,42,152,99,20
+egypt,37,68,41,8
+tunisia,37,94,87,15
+portugal,41,145,104,7
+uruguay,30,184,242,25
+taiwan,10,21,11,2
+greece,72,197,106,9
+kenya,22,137,107,8
+philippines,38,200,192,16
+serbia,46,87,39,2
+panama,6,77,65,11
+luxembourg,16,68,89,8
+bangladesh,89,182,146,35
+nigeria,13,144,92,9
+sweden,93,124,64,5
+turkey,44,80,27,5
+norway,54,118,59,5
+switzerland,380,1432,1534,100
+poland,70,85,18,0
+argentina,288,1253,1501,133
+latvia,6,27,8,0
+china,22,50,33,3
+belize,19,22,23,12
+italy,2491,10856,13163,1412
+sri lanka,8,46,40,4
+lithuania,11,43,10,1
+croatia,27,70,50,1
+belgium,291,1013,1156,124
+austria,274,987,843,53
+angola,13,13,18,8
+iran,66,135,60,11
+south africa,67,213,167,16
+netherlands,126,237,164,13
+israel,32,89,48,9
+nepal,18,64,43,11
+ireland,45,158,137,7
+peru,71,332,382,45
+thailand,26,54,64,7
+denmark,54,92,82,5
+slovenia,10,39,14,4
+japan,25,53,59,4
+guyana,0,9,8,1
+armenia,7,17,13,3
+belarus,21,26,16,7
+algeria,108,246,317,89
+morocco,85,222,224,26
+russia,42,93,26,4
+cote d'ivoire,9,10,32,4
+bulgaria,36,81,31,3
+venezuela,101,534,807,102
+andorra,13,16,27,13
+colombia,191,899,999,95
+nicaragua,10,50,87,13
+ecuador,80,374,684,80
+togo,3,18,26,8
+costa rica,49,177,189,16
+chile,119,603,615,42
+guatemala,39,176,181,17
+albania,16,45,43,7
+reunion,4,31,42,7
+madagascar,10,57,84,6
+barbados,16,21,25,12
+benin,22,40,60,15
+cote d'ivoire,25,79,80,10
+haiti,3,11,14,1
+dominican republic,17,114,87,2
+cameroon,13,78,115,14
+french polynesia,2,11,16,1
+martinique,6,9,11,4
+chad,1,5,11,1
+paraguay,23,111,130,13
+antigua and barbuda,4,7,7,2
+saint lucia,0,2,2,2
+guinea,3,12,18,1
+honduras,19,89,75,4
+czech republic,33,75,30,2
+mauritius,5,26,25,1
+macedonia,7,18,6,2
+puerto rico,0,7,15,3
+el salvador,26,153,163,21
+cuba,17,53,47,10
+tanzania,7,23,20,0
+anonymous proxy,7,7,1,0
+djibouti,0,3,11,2
+new zealand,47,201,324,21
+jordan,6,15,8,0
+saudi arabia,10,42,17,3
+romania,93,212,84,5
+azerbaijan,11,11,23,6
+trinidad and tobago,7,16,12,0
+slovakia,16,38,14,2
+san marino,4,11,20,3
+bahrain,9,24,12,5
+estonia,11,30,17,0
+bosnia and herzegovina,12,35,12,3
+cambodia,9,15,22,2
+united arab emirates,16,65,29,2
+hungary,22,54,34,1
+libya,1,3,1,1
+uganda,3,30,21,4
+singapore,19,66,49,6
+iceland,3,18,9,2
+cyprus,7,8,15,0
+lebanon,5,27,12,0
+vanuatu,1,3,3,2
+sudan,7,9,6,1
+qatar,2,14,10,0
+ghana,8,47,35,1
+namibia,3,7,14,1
+tonga,1,2,1,1
+ethiopia,5,9,16,9
+zambia,4,6,13,1
+oman,0,9,4,0
+bahamas the,13,23,16,9
+georgia,3,8,7,1
+jamaica,3,8,26,1
+fiji,4,13,15,4
+congo democratic republic of the,10,14,22,2
+rwanda,3,5,5,0
+papua new guinea,3,5,5,0
+mali,4,27,21,6
+new caledonia,2,14,21,1
+holy see,1,4,4,1
+congo republic of the,0,9,8,0
+south korea,8,17,7,4
+guadeloupe,5,5,11,0
+solomon islands,0,1,4,1
+iraq,8,16,4,1
+vietnam,19,38,31,5
+malta,7,12,17,3
+korea republic of,0,4,2,0
+curacao,1,4,4,0
+kosovo,4,4,1,1
+moldova,3,8,8,1
+uzbekistan,2,2,3,0
+niger,4,11,13,3
+liberia,1,4,2,0
+saint pierre and miquelon,0,3,0,0
+timor-leste,1,1,0,0
+kiribati,2,0,0,0
+senegal,17,50,59,10
+gabon,3,24,26,6
+burkina faso,7,10,32,11
+french guiana,1,4,4,0
+congo,0,1,3,1
+syria,7,11,2,2
+myanmar,9,21,24,3
+kazakhstan,1,8,1,0
+eritrea,1,3,0,0
+maldives,0,6,2,0
+congo the democratic republic of the,1,2,4,0
+yemen,3,2,5,0
+kuwait,1,6,8,0
+iran islamic republic of,17,8,9,10
+sierra leone,2,1,2,2
+burundi,2,5,9,4
+russian federation,6,9,4,1
+swaziland,1,10,7,1
+somalia,2,3,2,1
+lesotho,0,2,3,0
+europe,1,9,7,0
+botswana,2,9,10,2
+south sudan,0,2,1,0
+equatorial guinea,0,2,5,0
+monaco,4,10,6,0
+sao tome and principe,0,2,2,0
+mongolia,6,4,6,2
+cape verde,0,3,8,0
+mozambique,3,4,16,0
+tuvalu,0,2,3,2
+mauritania,1,3,2,0
+netherlands antilles,1,1,3,0
+brunei,1,5,8,1
+isle of man,0,0,1,0
+palestinian territory,0,1,1,1
+east timor (see timor-leste),4,2,6,0
+saint kitts and nevis,0,5,2,2
+gambia the,1,3,3,0
+montenegro,1,10,2,0
+central african republic,1,2,3,1
+comoros,2,2,4,0
+bermuda,1,4,2,1
+turkmenistan,3,1,1,0
+palestinian territories,0,5,1,0
+bahamas,0,1,0,0
+north korea,5,2,2,5
+tanzania united republic of,0,2,1,0
+liechtenstein,1,8,2,1
+malawi,3,3,6,1
+guinea-bissau,0,0,2,1
+bhutan,2,3,2,2
+laos,1,3,3,0
+marshall islands,0,0,2,1
+micronesia,0,1,1,2
+lao people's democratic republic,1,0,1,0
+suriname,0,4,0,1
+grenada,1,1,1,1
+seychelles,0,1,2,1
+samoa,0,2,1,0
+brunei darussalam,0,0,1,0
+mayotte,3,1,1,0
+jersey,0,1,0,0
+kyrgyzstan,0,0,1,2
+dominica,0,0,3,0
+saint vincent and the grenadines,1,1,3,0
+gambia,0,1,0,0
+moldova republic of,0,0,1,0
+tajikistan,1,1,0,0
+saint martin,0,0,1,0
+guernsey,0,0,1,0
+aruba,0,0,0,1

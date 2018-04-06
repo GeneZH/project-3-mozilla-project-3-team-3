@@ -1,0 +1,224 @@
+<html>
+
+<head>
+    <title>Project 3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="project3.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-brand" href="#">Project 3</p>
+            </div>
+        </div>
+    </nav>
+    <div class="w3-content" style="max-width:2000px;margin-top:70px">
+        <div class="title" id="map">
+        </div>
+        <div class="title" id="donut">
+        </div>
+    <script>
+        //Map
+        var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+                width = 1080 - margin.left - margin.right,
+                height = 720 - margin.top - margin.bottom;
+        var svg = d3.select("#map")
+    		.append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append('g')
+            .attr('class', 'map');
+
+        var tooltip = d3.select("#map").append("div")
+            .attr("class", "tooltip")
+            .attr("id", "toolTip")
+            .style("display", "none");
+
+        var projection = d3.geoMercator()
+              .scale(200)
+              .translate( [width / 2.2, height / 1.5]);
+        var path = d3.geoPath().projection(projection);
+
+        var color = d3.scaleThreshold()
+            .domain([10,50,100,200,500,800,1000,2000,5000,8000,10000,20000,30000])
+            .range(["#98FB98", "#8BEE8B", "#7EE17E", "#72D572", "#65C865", "#58BC58","#4CAF4C","#3FA23F","#329632","#268926","#197D19","#0C700C","#006400"]);
+
+        var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
+        var country_dict = {};
+        d3.csv("country_total.csv", function(data) {
+            console.log(data);
+            country_data = data;
+            for (var i in data){
+                if(data[i].Country == null) continue;
+                var name = data[i].Country;
+                var array = [data[i][field[0]], data[i][field[1]], data[i][field[2]], data[i][field[3]]];
+                country_dict[name] = array;
+            }
+            queue()
+              .defer(d3.json, 'https://unpkg.com/world-atlas@1/world/110m.json')
+              .defer(d3.tsv, 'world-country-names.tsv')
+              .await(ready);
+        });
+
+        function ready(err, world, names) {
+          if (err) throw err
+          var countries = topojson.feature(world, world.objects.countries).features;
+          countries = countries.filter(function(d) {
+            return names.some(function(n) {
+                if (d.id == n.id) return d.name = n.name.split(',')[0];
+              });
+          });
+          console.log(countries);
+          console.log("--country_dict--");
+          console.log(country_dict);
+          svg.append("g")
+            .attr("id", "countries")
+            .attr("class", "countries")
+          .selectAll("path")
+            .data(countries)
+          .enter().append("path")
+            .attr("d", path)
+            .attr("id", function(d) { return d.id; })
+            .style("fill", function(d, i) {
+                if(country_dict[d.name.toLowerCase()] != null) {
+                    var num = country_dict[d.name.toLowerCase()];
+                    var total = 0;
+                    num.forEach(function(n) {
+                      total += parseInt(n);
+                    });
+                    return color(total);
+                }
+            })
+            .on("mouseover", function(d) {
+                d3.select(this).transition()
+                    .duration(200)
+                    .style('stroke-width', 1.5)
+                    .style('fill', function(d) { return d3.rgb("orange")} )
+                    .style("opacity",0.8);
+                var num = country_dict[d.name.toLowerCase()];
+                var total = 0;
+                if(num != null) {
+                    num.forEach(function(n) {
+                      total += parseInt(n);
+                    });
+                }
+                //show tooltip
+                tooltip.style("left", (d3.event.pageX - 34) + "px")
+                    .style("top", (d3.event.pageY - 12) + "px")
+                    .style("display", "inline-block")
+                    .html(`${d.name}</br>Number of Submission: ${total}`)
+                    .style("opacity", 0.8);
+          })
+          .on("mouseout", function(d) {
+              var num = country_dict[d.name.toLowerCase()];
+              var total = 0;
+              if(num != null) {
+                  num.forEach(function(n) {
+                    total += parseInt(n);
+                  });
+              }
+              d3.select(this).transition()
+                .duration(500)
+                .style('fill', function(d) { return total == 0 ? 'grey': color(total) })
+                .style("opacity",0.9);
+              //hide tooltip
+              tooltip.style("display", "none");
+          })
+          .on("click", country_clicked);
+        };
+
+        function country_clicked(d) {
+            //console.log("onClick:" + d.name);
+            if(country_dict[d.name.toLowerCase()] == null) return;
+            var div = document.getElementById('donut');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            DonutCharts(d.name, country_dict[d.name.toLowerCase()]);
+        };
+
+        function DonutCharts(country, data) {
+            var margin = { top: 20, right: 20, bottom: 30, left: 0 },
+                width = 500 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+            var w = 600 - margin.left - margin.right,
+                h = 600 - margin.top - margin.bottom;
+
+            var radius = Math.min(width, height) / 2;
+
+            var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
+
+            var color = d3.scaleOrdinal(d3.schemeCategory20)
+                        .domain(field);
+
+            var arc = d3.arc()
+                .outerRadius(radius)
+                .innerRadius(radius * 0.65);
+
+            var pie = d3.pie()
+                .sort(null)
+                .value(function(d) { return d; });
+
+            var svg = d3.select("#donut").append("svg")
+                .attr("width", w + margin.left + margin.right)
+                .attr("height", h + margin.top + margin.bottom)
+                .append("g")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+            var g = svg.selectAll(".arc")
+                      .data(pie(data))
+                    .enter().append("g")
+                      .attr("class", "arc");
+
+              g.append("path")
+                  .attr("d", arc)
+                  .style("fill", function(d) { return color(field[d.index]); })
+                  .on("mouseover", function(d) {
+                      var bigarc = d3.arc()
+                          .outerRadius(radius * 1.08)
+                          .innerRadius(radius * 0.7);
+                      d3.select(this)
+                       .transition()
+                       .attr("d", bigarc)
+                       .style("opacity", 0.8);
+                 })
+                 .on("mouseout", function(d) {
+                     d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .attr("d", arc)
+                        .style("opacity", 1.0);
+                })
+                .on("click", function(d) {
+                    //call function
+                    console.log(country + "," + field[d.index]);
+                });
+
+              g.append("text")
+                  .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+                  .attr("dy", ".35em")
+                  .text(function(d) { return d.value == 0 ? "" : field[d.index]; });
+        };
+
+    </script>
+
+        <footer class="navbar navbar-inverse navbar-static-bottom">
+            <center class="navbar-brand">Team 3:</center>
+            <center class="navbar-brand">Chih-Wei Lin</center>
+            <center class="navbar-brand">Yijun  Zhang</center>
+            <center class="navbar-brand">Yuhan Lin</center>
+
+        </footer>
+    </body>
+</html>
