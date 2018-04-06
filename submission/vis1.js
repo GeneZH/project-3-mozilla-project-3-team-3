@@ -63,9 +63,11 @@ function vis1() {
 
 
 
-        svg.append("g").selectAll("line")
+        svg.append("g")
+            .attr("class", "errorbar").selectAll("line")
             .data(showdata).enter()
             .append("line")
+            .attr("class", "error-line")
             .attr("stroke", "steelblue")
             .attr("stroke-width", 1.5)
             .attr("x1", function(d) {
@@ -82,10 +84,11 @@ function vis1() {
             });
 
         // Add Error Top Cap
-        svg.append("g").selectAll("line")
+        svg.append("g")
+            .attr("class", "errorbar").selectAll("line")
             .data(showdata).enter()
             .append("line")
-            .attr("class", "error-cap")
+            .attr("class", "top-error-cap")
             .attr("stroke", "steelblue")
             .attr("stroke-width", 2)
             .attr("x1", function(d) {
@@ -102,10 +105,12 @@ function vis1() {
             });
 
         // Add Error Bottom Cap
-        svg.append("g").selectAll("line")
+        svg.append("g")
+            .attr("class", "errorbar")
+            .selectAll("line")
             .data(showdata).enter()
             .append("line")
-            .attr("class", "error-cap")
+            .attr("class", "bot-error-cap")
             .attr("stroke", "steelblue")
             .attr("stroke-width", 2)
             .attr("x1", function(d) {
@@ -129,7 +134,7 @@ function vis1() {
             .attr("r", 3.5)
             .attr("fill", "red")
             .attr("cx", function(d) {
-                return xScale(d.key)  + 35;
+                return xScale(d.key) + 35;
             })
             .attr("cy", function(d) {
                 return yScale(d.mean);
@@ -138,10 +143,117 @@ function vis1() {
 
         // Add Axis labels
         svg.append("g")
+            .attr("class", "x axis")
             .call(d3.axisBottom(xScale))
             .attr("transform", "translate(0," + yScale(0.5) + ")");
 
-        svg.append("g").attr("class", "axis axis--y").call(yAxis);
+        svg.append("g").call(yAxis);
+
+        d3.select("#sortChoice1").on("change", change);
+        d3.select("#sortChoice2").on("change", change);
+        d3.select("#sortChoice3").on("change", change);
+
+
+        function change() {
+
+            if(document.getElementById("sortChoice1").checked)
+            	showdata.sort(function(a, b) { return fields.indexOf(a.key) - fields.indexOf(b.key); });
+            if(document.getElementById("sortChoice2").checked)
+            	showdata.sort(function(a, b) { return a.mean - b.mean; });
+            if(document.getElementById("sortChoice3").checked)
+            	showdata.sort(function(a, b) { return a.deviation - b.deviation; });
+            xScale = d3.scaleBand()
+                .domain(showdata.map(function(d) { return d.key; }))
+                .range([0, width])
+                .padding(0.2);
+
+            yScale = d3.scaleLinear()
+                .range([height, 0])
+                .domain([0, 10]).nice();
+
+            xAxis = d3.axisBottom(xScale);
+            yAxis = d3.axisLeft(yScale).ticks(12 * height / width);
+            console.log(svg.selectAll(".errorbar"));
+
+            var errorbars = svg.selectAll(".errorbar").selectAll(".error-line")
+                .data(showdata);
+            errorbars.exit().remove();
+            errorbars.enter().append("line");
+            errorbars.transition()
+                .duration(500)
+                .attr("x1", function(d) {
+                    return xScale(d.key) + 35;
+                })
+                .attr("y1", function(d) {
+                    return yScale(d.mean + d.deviation);
+                })
+                .attr("x2", function(d) {
+                    return xScale(d.key) + 35;
+                })
+                .attr("y2", function(d) {
+                    return yScale(d.mean - d.deviation);
+                });
+
+
+
+            var toperrorcap = svg.selectAll(".errorbar").selectAll(".top-error-cap")
+                .data(showdata);
+            toperrorcap.exit().remove();
+            toperrorcap.enter().append("line");
+            toperrorcap.transition()
+                .duration(500)
+                .attr("x1", function(d) {
+                    return xScale(d.key) - 4 + 35;
+                })
+                .attr("y1", function(d) {
+                    return yScale(d.mean + d.deviation);
+                })
+                .attr("x2", function(d) {
+                    return xScale(d.key) + 4 + 35;
+                })
+                .attr("y2", function(d) {
+                    return yScale(d.mean + d.deviation);
+                });
+
+            var boterrorcap =
+                svg.selectAll(".errorbar").selectAll(".bot-error-cap")
+                .data(showdata);
+            boterrorcap.exit().remove();
+            boterrorcap.enter().append("circle");
+            boterrorcap.transition()
+                .duration(500)
+                .attr("x1", function(d) {
+                    return xScale(d.key) - 4 + 35;
+                })
+                .attr("y1", function(d) {
+                    return yScale(d.mean - d.deviation);
+                })
+                .attr("x2", function(d) {
+                    return xScale(d.key) + 4 + 35;
+                })
+                .attr("y2", function(d) {
+                    return yScale(d.mean - d.deviation);
+                });
+
+            var points = svg.selectAll(".scatter").selectAll("circle")
+                .data(showdata);
+            points.exit().remove();
+            points.enter().append("line");
+            points.transition()
+                .duration(500)
+                .attr("cx", function(d) {
+                    return xScale(d.key) + 35;
+                })
+                .attr("cy", function(d) {
+                    return yScale(d.mean);
+                });
+
+            svg.select(".x.axis").transition().duration(500).call(d3.axisBottom(xScale));
+
+        };
+
+
+
 
     });
 }
