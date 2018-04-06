@@ -52,9 +52,7 @@
 
         var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
         var country_dict = {};
-        d3.csv("country_total.csv", function(data) {
-            console.log(data);
-            country_data = data;
+        d3.csv("data/country_total.csv", function(data) {
             for (var i in data){
                 if(data[i].Country == null) continue;
                 var name = data[i].Country;
@@ -63,7 +61,7 @@
             }
             queue()
               .defer(d3.json, 'https://unpkg.com/world-atlas@1/world/110m.json')
-              .defer(d3.tsv, 'world-country-names.tsv')
+              .defer(d3.tsv, 'data/world-country-names.tsv')
               .await(ready);
         });
 
@@ -75,9 +73,6 @@
                 if (d.id == n.id) return d.name = n.name.split(',')[0];
               });
           });
-          console.log(countries);
-          console.log("--country_dict--");
-          console.log(country_dict);
           svg.append("g")
             .attr("id", "countries")
             .attr("class", "countries")
@@ -135,7 +130,6 @@
         };
 
         function country_clicked(d) {
-            //console.log("onClick:" + d.name);
             if(country_dict[d.name.toLowerCase()] == null) return;
             var div = document.getElementById('donut');
             while (div.firstChild) {
