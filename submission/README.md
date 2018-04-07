@@ -9,7 +9,9 @@ When we took the first look of the dataset, we realized that different answer on
 ### Visualization 1
 The first visualization is visualizing the question "You are planning on buying your next cool new tech toy. Maybe it's a smart TV or a new smartphone. Take a look at the items below and arrange them in order of importance as you make that purchase." We thought this question was very interesting because we can see what reasons will make customers to buy a product. Not only calculated their mean value, we also calculated their standard deviation to see if there's any option's importance vary a lot among different people.
 ### Visualization 2
+The second visualization is visualizing the question "Check all the internet connected devices you currently own" using bar chart.
 ### Visualization 3
+The third visualizaiton is visualizing the question "What is your biggest fear as we move towards a more connected future" using pie chart.
 
 ## Contributions
 
