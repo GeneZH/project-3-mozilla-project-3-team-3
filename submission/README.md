@@ -1,5 +1,4 @@
 # Project 3
-## Visualizations
 ### Preprocessing Data
 Because the raw data file exceeds 100MB, the file size limit of GitHub, so we all did some preprocessing, like dropping the unused columns to squeeze the file size to make it able to upload on GitHub. We did preprocessing for our visualizations separately, that is each visualization has its own data file. We store the data files in `/data` folder for easier way to manage.
 
@@ -22,7 +21,7 @@ The first visualization is visualizing the question "You are planning on buying 
 The second visualization is visualizing the question "Check all the internet connected devices you currently own" using bar chart. By interacting with the donut to apply filters, we can get information about the popularity/market share of different internet-connected devices corresponding to regions and people with different tech-level.  
 
 ### Visualization of the Biggest Fear of Future Tech World
-The third visualization is visualizing the question "What is your biggest fear as we move towards a more connected future" using pie chart.
+The third visualizaiton is visualizing the question "What is your biggest fear as we move towards a more connected future" using pie chart. It interacts with the donut to show different statistics grouped by regions and tech-level. We can learn from the pie chart that people with higher tech-level are not necessary to have less fear about the more connected future.
 
 ## Contributions
 

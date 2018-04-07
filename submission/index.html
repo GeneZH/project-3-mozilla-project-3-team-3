@@ -47,6 +47,15 @@
   </div></div>
     </div>
 
+    <div class="title" id="Vis3">
+        <h1>Visualization 3: </h1>
+        <div id="vis3_plot"> <div id="tooltip3" class="hidden">
+    <p><strong>Responses: </strong></p>
+    <p><span id="value"></span></p>
+  </div></div>
+    </div>
+   
+
     <script>
     $('#mapLink').click(function() { scrollTo("map"); return false; });
     $('#vis1Link').click(function() { scrollTo("Vis1"); return false; });
@@ -362,6 +371,9 @@
             vis1(id_list);
             vis2(id_list);
 
+            vis3(id_list);
+
+
             scrollTo("Vis1");
 
 
@@ -371,6 +383,7 @@
     </script>
     <script type="text/javascript" src="vis1.js"></script>
     <script type="text/javascript" src="vis2.js"></script>
+    <script type="text/javascript" src="vis3.js"></script>
     <footer class="navbar navbar-inverse navbar-static-bottom">
         <center class="navbar-brand">Team 3:</center>
         <center class="navbar-brand">Chih-Wei Lin</center>
