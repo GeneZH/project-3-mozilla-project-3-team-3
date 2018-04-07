@@ -49,11 +49,11 @@ var id_set = new Set(id_list);
        	var per_other = num_other/total;
        
        	var showdata = [];
-       	showdata.push({ "percentage": per_privacy, "responses":num_privacy });
-       	showdata.push({ "percentage": per_safe, "responses":num_safe});
-       	showdata.push({ "percentage": per_noproblem, "responses":num_noproblem});
-       	showdata.push({ "percentage": per_touch, "responses":num_touch});
-       	showdata.push({ "percentage": per_other, "responses":num_other});	
+       	showdata.push({ "percentage": per_privacy, "responses":num_privacy, "txt": "Loss of privacy"});
+       	showdata.push({ "percentage": per_safe, "responses":num_safe, "txt": "We will be less safe"});
+       	showdata.push({ "percentage": per_noproblem, "responses":num_noproblem, "txt": "I have no fears about a more connected future"});
+       	showdata.push({ "percentage": per_touch, "responses":num_touch, "txt": "We will lose touch with one another"});
+       	showdata.push({ "percentage": per_other, "responses":num_other, "txt": "Other"});	
 
        	var margin = { top: 20, right: 20, bottom: 30, left: 40 },
             width = 960 - margin.left - margin.right,
@@ -105,7 +105,7 @@ var id_set = new Set(id_list);
 		arc.append("text")
 		  .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
 		  .attr("dy", "0.35em")
-		  .text(function(d) { return d.data.percentage; });
+		  .text(function(d) { return d.data.txt + ": " +  d.data.percentage.toPrecision(2); });
 });
 
 }
