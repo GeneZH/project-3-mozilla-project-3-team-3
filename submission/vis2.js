@@ -1,3 +1,13 @@
+function vis2(id_list) {
+
+var div = document.getElementById('vis2_plot');
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+
+
+var id_set = new Set(id_list);
+    
 
     var fields = [
     'Router', 'Laptop Computer', 'Smart Phone', 'Smart TV', 'Activity Tracker', 'Smarthome Hub', 'Car', 'Smart Thermostat', 'Smart Appliance', 'Smart Door Locks', 'Smart Lighting'
@@ -14,6 +24,8 @@
 
         
         data.forEach(function(d) {
+          if (!id_set.has(d['Response ID']))
+                return;
             for (i = 0; i < 11; i++) {
                 fieldData[i].push(d[fields[i]]);
             }
@@ -53,12 +65,12 @@
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
        
         svg.append("g")
-          .attr("class", "axis axis--x")
+          .attr("class", "x axis")
           .attr("transform", "translate(0," + height + ")")
           .call(d3.axisBottom(x));
 
         svg.append("g")
-          .attr("class", "axis axis--y")
+          .attr("class", "y axis")
           .call(d3.axisLeft(y).ticks(10, "%"))
         .append("text")
           .attr("transform", "rotate(-90)")
@@ -126,6 +138,15 @@
         .delay(delay)
         .attr("x", function(d) { return x0(d.device); });
 
+
+        transition.select(".x.axis")
+        .call(d3.axisBottom(x))
+      .selectAll("g")
+        .delay(delay);
+
   }
 
         });
+
+
+}
