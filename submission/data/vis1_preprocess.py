@@ -8,7 +8,7 @@ with open(filename, encoding="ISO-8859-1") as f:
     fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy', 'Reliability', 'User Review', 'Expert REC', 'Friend/Family REC', 'Convenience']
     writer.writerow([data_list[0][0], *fields])
     for row in data_list[1:]:
-        if not any(value == '' for value in row[24:34]):
+        #if not any(value == '' for value in row[24:34]):
             writer.writerow([row[0], *row[24:34]])
 
     csvFile.close()
