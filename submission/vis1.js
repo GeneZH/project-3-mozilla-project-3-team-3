@@ -1,6 +1,10 @@
-vis1();
-
-function vis1() {
+function vis1(id_list) {
+	console.log(id_list.length);
+	var id_set = new Set(id_list);
+    var div = document.getElementById('vis1_plot');
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
     var fields = ['Price', 'Features', 'Safety', 'Security', 'Privacy',
         'Reliability', 'User Review', 'Expert REC', 'Friend/Family REC', 'Convenience'
     ];
@@ -14,6 +18,8 @@ function vis1() {
 
         var showdata = [];
         data.forEach(function(d) {
+            if (!id_set.has(d['Response ID']))
+                return;
             for (i = 0; i < 10; i++) {
                 fieldData[i].push(parseFloat(d[fields[i]]));
             }
@@ -27,7 +33,7 @@ function vis1() {
             var std = d3.deviation(fieldData[i]);
             showdata.push({ "key": fields[i], "min": minValue, "max": maxValue, "mean": meanValue, "deviation": std });
         }
-        console.log(showdata);
+        //console.log(showdata);
 
         var margin = { top: 20, right: 20, bottom: 30, left: 40 },
             width = 960 - margin.left - margin.right,
@@ -156,12 +162,12 @@ function vis1() {
 
         function change() {
 
-            if(document.getElementById("sortChoice1").checked)
-            	showdata.sort(function(a, b) { return fields.indexOf(a.key) - fields.indexOf(b.key); });
-            if(document.getElementById("sortChoice2").checked)
-            	showdata.sort(function(a, b) { return a.mean - b.mean; });
-            if(document.getElementById("sortChoice3").checked)
-            	showdata.sort(function(a, b) { return a.deviation - b.deviation; });
+            if (document.getElementById("sortChoice1").checked)
+                showdata.sort(function(a, b) { return fields.indexOf(a.key) - fields.indexOf(b.key); });
+            if (document.getElementById("sortChoice2").checked)
+                showdata.sort(function(a, b) { return a.mean - b.mean; });
+            if (document.getElementById("sortChoice3").checked)
+                showdata.sort(function(a, b) { return a.deviation - b.deviation; });
             xScale = d3.scaleBand()
                 .domain(showdata.map(function(d) { return d.key; }))
                 .range([0, width])
