@@ -65,12 +65,12 @@ var id_set = new Set(id_list);
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
        
         svg.append("g")
-          .attr("class", "axis axis--x")
+          .attr("class", "x axis")
           .attr("transform", "translate(0," + height + ")")
           .call(d3.axisBottom(x));
 
         svg.append("g")
-          .attr("class", "axis axis--y")
+          .attr("class", "y axis")
           .call(d3.axisLeft(y).ticks(10, "%"))
         .append("text")
           .attr("transform", "rotate(-90)")
@@ -137,6 +137,12 @@ var id_set = new Set(id_list);
     transition.selectAll("rect")
         .delay(delay)
         .attr("x", function(d) { return x0(d.device); });
+
+
+        transition.select(".x.axis")
+        .call(d3.axisBottom(x))
+      .selectAll("g")
+        .delay(delay);
 
   }
 
