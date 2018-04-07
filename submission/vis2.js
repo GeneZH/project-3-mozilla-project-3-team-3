@@ -1,4 +1,3 @@
-var tooltip2 = d3.select("#vis2_plot").append("div").attr("class", "hidden");
 
     var fields = [
     'Router', 'Laptop Computer', 'Smart Phone', 'Smart TV', 'Activity Tracker', 'Smarthome Hub', 'Car', 'Smart Thermostat', 'Smart Appliance', 'Smart Door Locks', 'Smart Lighting'
@@ -77,8 +76,8 @@ var tooltip2 = d3.select("#vis2_plot").append("div").attr("class", "hidden");
           .attr("width", x.bandwidth())
           .attr("height", function(d) { return height - y(d.percentage)})
           .on("mouseover", function(d) {
-            var xPosition = parseFloat(d3.select(this).attr("x")) + x.bandwidth() / 2;
-            var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+            var xPosition = parseFloat(d3.select(this).attr("x")) + x.bandwidth() / 2 ;
+            var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2 + 1300;
               d3.select("#tooltip2")
                         .style("left", xPosition + "px")
                         .style("top", yPosition + "px")
@@ -89,8 +88,44 @@ var tooltip2 = d3.select("#vis2_plot").append("div").attr("class", "hidden");
             })
          .on("mouseout", function() {
             d3.select("#tooltip2").classed("hidden", true);
-         })
+         });
+
+        
 
 
+        d3.select("#vis2_checkbox").on("change", change1);
+
+        var sortTimeout = setTimeout(function() {
+          d3.select("#vis2_checkbox").property("checked", true).each(change1);
+        }, 2000);
+
+        function change1() {
+          clearTimeout(sortTimeout);
+
+
+
+         var x0 = x.domain(showdata.sort(this.checked
+        ? function(a, b) { return a.percentage - b.percentage; }
+        : function(a, b) { return b.percentage - a.percentage; })
+        .map(function(d) { return d.device; }))
+        .copy();
+      
+
+        svg.selectAll("rect")
+           .sort(function(a, b) {
+              return x0(a.device) - x0(b.device);
+                
+            });
+
+
+        var transition = svg.transition().duration(750),
+        delay = function(d, i) { return i * 50; };
+
+
+    transition.selectAll("rect")
+        .delay(delay)
+        .attr("x", function(d) { return x0(d.device); });
+
+  }
 
         });

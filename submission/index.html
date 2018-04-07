@@ -39,7 +39,11 @@
     </div>
     <div class="title" id="Vis2">
         <h1>Visualization 2: </h1>
-        <div id="vis2_plot"></div>
+        <label><input type="checkbox" id = "vis2_checkbox">Sort Percentages</label>
+        <div id="vis2_plot"> <div id="tooltip2" class="hidden">
+    <p><strong>Responses: </strong></p>
+    <p><span id="value"></span></p>
+  </div></div>
     </div>
     <div class="title" id="Vis3">
         <h1>Visualization 3: </h1>
@@ -359,6 +363,7 @@
     }
     </script>
     <script type="text/javascript" src="vis1.js"></script>
+    <script type="text/javascript" src="vis2.js"></script>
     <footer class="navbar navbar-inverse navbar-static-bottom">
         <center class="navbar-brand">Team 3:</center>
         <center class="navbar-brand">Chih-Wei Lin</center>
