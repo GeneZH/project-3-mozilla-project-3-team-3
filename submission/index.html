@@ -68,6 +68,14 @@
         .attr("height", height + margin.top + margin.bottom)
         .append('g')
         .attr('class', 'map');
+    svg.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", "white")
+        .attr("opacity", 0)
+        .on("click", country_clicked);
+
+
 
     var tooltip = d3.select("#map").append("div")
         .attr("class", "tooltip")
@@ -85,12 +93,17 @@
 
     var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
     var country_dict = {};
+    var world = Array(4).fill(0);
     d3.csv("./data/country_total.csv", function(data) {
         for (var i in data) {
             if (data[i].Country == null) continue;
             var name = data[i].Country;
             var array = [data[i][field[0]], data[i][field[1]], data[i][field[2]], data[i][field[3]]];
             country_dict[name] = array;
+            world[0] += parseInt(array[0]);
+            world[1] += parseInt(array[1]);
+            world[2] += parseInt(array[2]);
+            world[3] += parseInt(array[3]);
         }
         queue()
             .defer(d3.json, 'https://unpkg.com/world-atlas@1/world/110m.json')
@@ -168,16 +181,29 @@
     };
 
     function country_clicked(d) {
-        if (country_dict[d.name.toLowerCase()] == null) return;
-        $('html,body').animate({
-                scrollTop: $("#donut").offset().top - 80
-            },
-            'slow');
-        var div = document.getElementById('donut');
-        while (div.firstChild) {
-            div.removeChild(div.firstChild);
+        if (d == null) {
+            $('html,body').animate({
+                    scrollTop: $("#donut").offset().top - 80
+                },
+                'slow');
+            var div = document.getElementById('donut');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            DonutCharts("World", world);
+        } else {
+            if (country_dict[d.nHame.toLowerCase()] == null) return;
+            $('html,body').animate({
+                    scrollTop: $("#donut").offset().top - 80
+                },
+                'slow');
+            var div = document.getElementById('donut');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            DonutCharts(d.name, country_dict[d.name.toLowerCase()]);
         }
-        DonutCharts(d.name, country_dict[d.name.toLowerCase()]);
+
     };
 
     function DonutCharts(country, data) {
@@ -214,7 +240,7 @@
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr("transform", 'translate(' + (width / 2+100) + ',' + (height / 2) + ')');
+            .attr("transform", 'translate(' + (width / 2 + 100) + ',' + (height / 2) + ')');
 
         var g = svg.selectAll(".arc")
             .data(pie(data))
