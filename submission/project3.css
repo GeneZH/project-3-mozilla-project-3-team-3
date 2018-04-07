@@ -71,3 +71,45 @@ h2 {
     fill: lightcyan;
   }
 }
+<<<<<<< HEAD
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: orange;
+}
+
+.axis--x path {
+  display: none;
+}
+
+
+#tooltip2 {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      padding: 10px;
+      background-color: white;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+    }
+
+    #tooltip2.hidden {
+      display: none;
+    }
+
+    #tooltip2 p {
+      margin: 0;
+      font-family: Futura;
+      font-size: 16px;
+      line-height: 20px;
+    }
+=======
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
