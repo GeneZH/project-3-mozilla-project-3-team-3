@@ -37,9 +37,12 @@
         <label for="sortChoice3">Deviation</label>
         <div id="vis1_plot"></div>
     </div>
-    <div class="title" id="Vis2">
+     <div class="title" id="Vis2">
         <h1>Visualization 2: </h1>
-        <div id="vis2_plot"></div>
+        <div id="vis2_plot"><div id="tooltip2" class="hidden"><p><strong>Responses:</strong></p>
+    <p><span id="value"></span></p></div>
+
+
     </div>
     <div class="title" id="Vis3">
         <h1>Visualization 3: </h1>
@@ -50,14 +53,20 @@
     $('#vis1Link').click(function() { scrollTo("Vis1"); return false; });
     $('#vis2Link').click(function() { scrollTo("Vis2"); return false; });
     $('#vis3Link').click(function() { scrollTo("Vis3"); return false; });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     function scrollTo(id) {
         $('html,body').animate({
                 scrollTop: $("#" + id).offset().top - 80
             },
             'slow');
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     //Map
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = 1080 - margin.left - margin.right,
@@ -68,6 +77,8 @@
         .attr("height", height + margin.top + margin.bottom)
         .append('g')
         .attr('class', 'map');
+<<<<<<< HEAD
+=======
     svg.append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
@@ -77,15 +88,26 @@
 
 
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     var tooltip = d3.select("#map").append("div")
         .attr("class", "tooltip")
         .attr("id", "toolTip")
         .style("display", "none");
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     var projection = d3.geoMercator()
         .scale(200)
         .translate([width / 2.2, height / 1.5]);
     var path = d3.geoPath().projection(projection);
+<<<<<<< HEAD
+    var color = d3.scaleThreshold()
+        .domain([10, 50, 100, 200, 500, 800, 1000, 2000, 5000, 8000, 10000, 20000, 30000])
+        .range(["#98FB98", "#8BEE8B", "#7EE17E", "#72D572", "#65C865", "#58BC58", "#4CAF4C", "#3FA23F", "#329632", "#268926", "#197D19", "#0C700C", "#006400"]);
+    var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
+    var country_dict = {};
+=======
 
     var color = d3.scaleThreshold()
         .domain([10, 50, 100, 200, 500, 800, 1000, 2000, 5000, 8000, 10000, 20000, 30000])
@@ -94,23 +116,30 @@
     var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
     var country_dict = {};
     var world = Array(4).fill(0);
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     d3.csv("./data/country_total.csv", function(data) {
         for (var i in data) {
             if (data[i].Country == null) continue;
             var name = data[i].Country;
             var array = [data[i][field[0]], data[i][field[1]], data[i][field[2]], data[i][field[3]]];
             country_dict[name] = array;
+<<<<<<< HEAD
+=======
             world[0] += parseInt(array[0]);
             world[1] += parseInt(array[1]);
             world[2] += parseInt(array[2]);
             world[3] += parseInt(array[3]);
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         }
         queue()
             .defer(d3.json, 'https://unpkg.com/world-atlas@1/world/110m.json')
             .defer(d3.tsv, './data/world-country-names.tsv')
             .await(ready);
     });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     function ready(err, world, names) {
         if (err) throw err
         var countries = topojson.feature(world, world.objects.countries).features;
@@ -160,7 +189,10 @@
                     .style("opacity", 1.0)
                     //.style("font-size",15)
                     .style("font-family", "Gill Sans");
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
             })
             .on("mouseout", function(d) {
                 var num = country_dict[d.name.toLowerCase()];
@@ -179,6 +211,20 @@
             })
             .on("click", country_clicked);
     };
+<<<<<<< HEAD
+    function country_clicked(d) {
+        if (country_dict[d.name.toLowerCase()] == null) return;
+        $('html,body').animate({
+                scrollTop: $("#donut").offset().top - 80
+            },
+            'slow');
+        var div = document.getElementById('donut');
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+        DonutCharts(d.name, country_dict[d.name.toLowerCase()]);
+    };
+=======
 
     function country_clicked(d) {
         if (d == null) {
@@ -206,13 +252,18 @@
 
     };
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     function DonutCharts(country, data) {
         var margin = { top: 20, right: 20, bottom: 30, left: 0 },
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
+<<<<<<< HEAD
+        var radius = Math.min(width, height) / 2 - 30;
+=======
 
         var radius = Math.min(width, height) / 2 - 30;
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         var field = ['Ultra Nerd', 'Technically Savvy', 'Average User', 'Luddite'];
         var portion = [];
         var total = 0;
@@ -227,6 +278,14 @@
         })
         var color = d3.scaleOrdinal(d3.schemeCategory20)
             .domain(field);
+<<<<<<< HEAD
+        var arc = d3.arc()
+            .outerRadius(radius)
+            .innerRadius(radius * 0.65);
+        var pie = d3.pie()
+            .sort(null)
+            .value(function(d) { return d; });
+=======
 
         var arc = d3.arc()
             .outerRadius(radius)
@@ -236,17 +295,25 @@
             .sort(null)
             .value(function(d) { return d; });
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         var svg = d3.select("#donut").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
+<<<<<<< HEAD
+            .attr("transform", 'translate(' + (width / 2+100) + ',' + (height / 2) + ')');
+=======
             .attr("transform", 'translate(' + (width / 2 + 100) + ',' + (height / 2) + ')');
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         var g = svg.selectAll(".arc")
             .data(pie(data))
             .enter().append("g")
             .attr("class", "arc");
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         g.append("path")
             .attr("d", arc)
             .style("fill", function(d) { return color(field[d.index]); })
@@ -271,14 +338,20 @@
                 //call function
                 console.log(country + "," + field[d.index]);
             });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         g.append("text")
             .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
             .attr("dy", ".35em")
             .text(function(d) {
                 return d.value == 0 ? "" : portion[d.index];
             });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         // The circle displaying total data.
         var center = svg.append("circle")
             .attr("r", radius * 0.58)
@@ -300,17 +373,25 @@
                 //call function
                 console.log(country);
             });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         svg.append("text")
             .attr('class', 'center-txt country')
             .attr("dy", -40)
             .attr('text-anchor', 'middle')
             .style('font-weight', 'bold')
             .text(function(d) { return country; });
+<<<<<<< HEAD
+        var legendItemSize = 18
+        var legendSpacing = 4
+=======
 
         var legendItemSize = 18
         var legendSpacing = 4
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         var legend = svg
             .selectAll('.legend')
             .data(color.domain())
@@ -324,12 +405,18 @@
                 var y = (i * height) - offset
                 return `translate(${x}, ${y})`
             })
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         legend.append('rect')
             .attr('width', legendItemSize)
             .attr('height', legendItemSize)
             .style('fill', color);
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
         legend.append('text')
             .attr('x', legendItemSize + legendSpacing)
             .attr('y', legendItemSize - legendSpacing)
@@ -337,6 +424,10 @@
     }
     </script>
     <script type="text/javascript" src="vis1.js"></script>
+<<<<<<< HEAD
+    <script type="text/javascript" src="vis2.js"></script>
+=======
+>>>>>>> 3b2e88a21cbf8a495fb4b4d694ea906b77453814
     <footer class="navbar navbar-inverse navbar-static-bottom">
         <center class="navbar-brand">Team 3:</center>
         <center class="navbar-brand">Chih-Wei Lin</center>
