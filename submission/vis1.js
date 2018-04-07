@@ -12,7 +12,6 @@ function vis1(id_list) {
         var fieldData = [
             []
         ];
-        console.log(data[0]);
         for (i = 0; i < 10; i++)
             fieldData.push([]);
 
@@ -33,7 +32,7 @@ function vis1(id_list) {
             var std = d3.deviation(fieldData[i]);
             showdata.push({ "key": fields[i], "min": minValue, "max": maxValue, "mean": meanValue, "deviation": std });
         }
-        //console.log(showdata);
+        console.log(showdata);
 
         var margin = { top: 20, right: 20, bottom: 30, left: 40 },
             width = 960 - margin.left - margin.right,
