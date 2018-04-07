@@ -100,20 +100,7 @@ var id_set = new Set(id_list);
 		arc.append("path")
 		  .attr("d", path)
 		  .attr("fill", function(d) { return color(d.data.percentage); })
-		   .on("mouseover", function(d) {
-            var xPosition = parseFloat(d3.select(this).attr("x"))  ;
-            var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2 + 1700;
-              d3.select("#tooltip3")
-                        .style("left", xPosition + "px")
-                        .style("top", yPosition + "px")
-                        .select("#value")
-                        .text(d.data.responses);
-
-                    d3.select("#tooltip3").classed("hidden", false);
-            })
-         .on("mouseout", function() {
-            d3.select("#tooltip2").classed("hidden", true);
-         });
+		   ;
 
 		arc.append("text")
 		  .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
