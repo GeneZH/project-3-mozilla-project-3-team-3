@@ -45,16 +45,12 @@
     <p><span id="value"></span></p>
   </div></div>
     </div>
-    <div class="title" id="Vis3">
-        <h1>Visualization 3: </h1>
-        <div id="vis3_plot"></div>
-    </div>
+   
     <script>
     $('#mapLink').click(function() { scrollTo("map"); return false; });
     $('#vis1Link').click(function() { scrollTo("Vis1"); return false; });
     $('#vis2Link').click(function() { scrollTo("Vis2"); return false; });
-    $('#vis3Link').click(function() { scrollTo("Vis3"); return false; });
-
+    
     function scrollTo(id) {
         $('html,body').animate({
                 scrollTop: $("#" + id).offset().top - 80
@@ -357,7 +353,8 @@
             console.log(id_list.length);
             //Entry
             vis1(id_list);
-            scrollTo("Vis1");
+            vis2(id_list);
+            
 
         });
 

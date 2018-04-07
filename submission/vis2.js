@@ -1,3 +1,13 @@
+function vis2(id_list) {
+
+var div = document.getElementById('vis2_plot');
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+
+
+var id_set = new Set(id_list);
+    
 
     var fields = [
     'Router', 'Laptop Computer', 'Smart Phone', 'Smart TV', 'Activity Tracker', 'Smarthome Hub', 'Car', 'Smart Thermostat', 'Smart Appliance', 'Smart Door Locks', 'Smart Lighting'
@@ -14,6 +24,8 @@
 
         
         data.forEach(function(d) {
+          if (!id_set.has(d['Response ID']))
+                return;
             for (i = 0; i < 11; i++) {
                 fieldData[i].push(d[fields[i]]);
             }
@@ -129,3 +141,6 @@
   }
 
         });
+
+
+}
