@@ -25,8 +25,9 @@
     </nav>
     <div class="title" id="map"></div>
     <div class="title" id="donut"></div>
+    <div class="title" id="filter_result"></div>
     <div class="title" id="Vis1">
-        <h1>Visualization 1: </h1> Sort by: &emsp;
+        <h1>Important Factors that Influence Consumer Purchase: </h1> Sort by: &emsp;
         <input type="radio" id="sortChoice1" name="contact" value="0" checked="checked">
         <label for="sortChoice1">Original</label>
         &emsp;
@@ -45,12 +46,12 @@
     <p><span id="value"></span></p>
   </div></div>
     </div>
-   
+
     <script>
     $('#mapLink').click(function() { scrollTo("map"); return false; });
     $('#vis1Link').click(function() { scrollTo("Vis1"); return false; });
     $('#vis2Link').click(function() { scrollTo("Vis2"); return false; });
-    
+
     function scrollTo(id) {
         $('html,body').animate({
                 scrollTop: $("#" + id).offset().top - 80
@@ -339,6 +340,13 @@
     }
 
     function filter_id(country, tech) {
+        var div = document.getElementById('filter_result');
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+        var country_text = country == "World" ? "the whole world" : country;
+        var tech_text = tech == "all" ? "people" : tech.toLowerCase();
+        $('#filter_result').append(`<h2>See questionnaires results done by ${tech_text} in ${country_text}</h2>`)
         var country_filter = country == "World" ? false : true,
             tech_filter = tech == "all" ? false : true;
         var id_list = [];
@@ -353,7 +361,7 @@
             //Entry
             vis1(id_list);
             vis2(id_list);
-            
+
 
         });
 
