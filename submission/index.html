@@ -300,8 +300,7 @@
             .on("click", function(d) {
                 //call function
                 console.log(country);
-                var id_list = filter_id(country, "all");
-                console.log(id_list.length);
+                filter_id(country, "all");
             });
 
         svg.append("text")
